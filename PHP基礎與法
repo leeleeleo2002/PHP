@@ -1,0 +1,62 @@
+開始與結尾:
+<?php 
+  這邊代表一份php文件
+?>
+------------------------------------------------------
+變數宣告:
+  一般變數:
+    $test = "我是變數";
+                             自行陣列索引命名
+    $newArray = array('蘋果','banana'=>'香蕉','水梨','芭樂');
+  常數:
+    const MESSAGE="感謝您購買";
+  
+------------------------------------------------------
+
+HTTP六大金剛跟一囚犯
+$_REQUEST:httpRequest拿取的參數，透過name
+$_GET:HTTP get拿取的參數
+$_POST:HTTP post拿取的參數
+$_SESSION:session
+$_COOKIE:cookie
+$_FILES:上傳檔案的資料
+
+$_ENV:暫時禁止使用   
+    
+    
+    
+------------------------------------------------------
+header.php
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PHP Sample Programs</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+------------------------------------------
+footer.php
+
+</body>
+</html>
+------------------------------------------
+FormTest.php
+php文件請求:一份PHP文件可以插入其他PHP文件
+<?php require "../header.php";?>
+
+              頁面跳轉到的php
+<form action="userLogin.php" action="post">
+帳號:<input type="text" name="user">
+密碼:<input type="text" name="password">
+<input type="submit" name="out" value="送出">
+</form>
+
+<?php require "../footer.php";?>
+
+-----------------------------------------------------
+
+
+
