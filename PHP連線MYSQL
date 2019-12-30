@@ -1,0 +1,15 @@
+<?php 
+$url ="localhost:3306";
+$user = "root";
+$password="a7228086123";
+
+$con =mysqli_connect($url,$user,$password);
+var_dump($con);
+if (!$con)
+  {
+  die('Could not connect: ' . mysqli_error());
+  }
+
+?>
+
+------------------------------------------------------------------
