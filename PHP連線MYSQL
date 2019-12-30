@@ -42,5 +42,5 @@ if (!$con)
   
   
 ?>
-PHP連線資料庫為QUERY SQL語法 
+PHP連線資料庫(增、修、查、改)皆為QUERY SQL語法 
 
