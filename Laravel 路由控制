@@ -71,7 +71,7 @@ class UserController extends Controller
     $password=$request->password;
     
     回傳在resource下名為test.blade.php的頁面，將參數貼到前端
-    return view("test",compact("user"),compact("password"));
+    return view("test",compact("user","password"));
     
     利用response回傳json資料設定key and view值 200為成功代碼
     return response()->json(['user' => $user,
