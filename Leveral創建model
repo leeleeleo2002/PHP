@@ -1,0 +1,48 @@
+利用cmd新建model
+
+---------------------------------------------
+php artisan make:model 資料表名稱 --migration
+---------------------------------------------
+
+建出來的model會在app資料夾下方
+假設名稱設定為Role
+
+Role.php
+------------------------------------------------
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Role extends Model
+{
+    //
+    protected $table = "Role"; 指定要讀取的資料表名稱
+}
+-------------------------------------------------
+
+按下按鈕拿取值
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use App\student;  
+
+
+class UserController extends Controller
+{
+    public function test(){
+        $a = student::where("SNO","A01")->get(); 資料序列畫
+        dd($a);
+        return view("test",compact("a"));
+    }
+}
+
+-------------------------------------------------------
+前端寫法   {{$a[0]->SNO}}拿取單一欄位
