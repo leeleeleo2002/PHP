@@ -3,3 +3,90 @@
 php artisan list
 --------------------
 
+
+
+創建Controller
+預設創建的位置會在Http/Controllers下
+--------------------------
+php artisan make:controller 路徑名稱/控制器名稱
+---------------------------
+
+
+
+實現基礎頁面跳轉
+從首頁跳轉
+index.php
+---------------------------------------------------------------------
+                  透過login跳轉進到Controller
+ <form action="{{route('login')}}" method="post">
+             表單跳轉須加上@csrf安全性，不然會跳419錯誤
+            @csrf 
+                <input type="text" name="user"><br>
+                <input type="text" name="password"><br>
+                <input type="submit" value="送出">
+            </form>
+              
+              透過qqq跳轉進到Controller
+ <form action="qqq" method="post">
+            @csrf
+                <input type="text" name="user"><br>
+                <input type="text" name="password"><br>
+                <input type="submit" value="送出">
+            </form>
+  --------------------------------------------------------------------
+  
+  
+  web.php
+  --------------------------------------------------------------------
+  透過name("login")跳轉到UserController的test function內
+  Route::post("/" ,"UserController@test")->name("login");
+  
+  
+  透過qqq跳轉到UserController的test function內
+  Route::post("qqq" ,"UserController@test");
+  ---------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  UserController.php
+ ----------------------------------------------------------------------
+ <?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+
+
+class UserController extends Controller
+{
+    public function test(Request $request){
+    利用request對應拿取text name=user的值
+    $user=$request->user;
+    $password=$request->password;
+    
+    回傳在resource下名為test.blade.php的頁面，將參數貼到前端
+    return view("test",compact("user"),compact("password"));
+    
+    利用response回傳json資料設定key and view值 200為成功代碼
+    return response()->json(['user' => $user,
+                             'password' =>$password],200);
+    }
+}
+
+
+------------------------------------------------------------------
+
+
+test.blade.php
+------------------------------------------------------------------
+retun view的方法可以用blade拿取後方compact的值
+{{$user}}
+{{$password}}
+
+  
