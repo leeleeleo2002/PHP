@@ -1,0 +1,10 @@
+C:\xampp\apache\conf 先移動到這個資料夾
+
+然後開啟httpd.conf檔案
+
+使用CTRL + SHIFT + F 開啟全域搜尋功能
+
+DocumentRoot "C:/xampp/htdocs"
+<Directory "C:/xampp/htdocs">
+更改路徑
+可以直接修改成專案的根目錄會是最好的
