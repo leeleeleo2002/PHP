@@ -8,3 +8,5 @@ DocumentRoot "C:/xampp/htdocs"
 <Directory "C:/xampp/htdocs">
 更改路徑
 可以直接修改成專案的根目錄會是最好的
+
+然後將apach重啟便完成了
