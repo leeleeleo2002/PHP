@@ -36,8 +36,10 @@ $(document).ready(function(){
 			 dataType:'json',
 			 success : function(data){
                 		 var str = JSON.stringify(data[0]);
+                 		 alert(data);
 				 alert(str);
-				  document.getElementById('test').innerHTML=str;
+                		 document.getElementById('test').innerHTML=data[0].SNO;
+                 		//document.getElementById('test').innerHTML=str;
                 },
              error:function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status+"\n"+thrownError);
