@@ -35,8 +35,9 @@ $(document).ready(function(){
 			 url:'aaa',
 			 dataType:'json',
 			 success : function(data){
-                 var str = JSON.stringify(data[0]);
+                		 var str = JSON.stringify(data[0]);
 				 alert(str);
+				  document.getElementById('test').innerHTML=str;
                 },
              error:function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status+"\n"+thrownError);
