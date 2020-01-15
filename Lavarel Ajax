@@ -40,6 +40,10 @@ $(document).ready(function(){
 				 alert(str);
                 		 document.getElementById('test').innerHTML=data[0].SNO;
                  		//document.getElementById('test').innerHTML=str;
+				
+				
+				//Jquery選擇器寫法
+				$("#test").text(data[0].SNO);
                 },
              error:function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status+"\n"+thrownError);
