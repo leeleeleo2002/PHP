@@ -1,0 +1,103 @@
+
+
+基礎模板
+layout.blade.php
+-----------------------------------------------------------------------------------------------------------------------------------------
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+    <body>
+        <h1>Laravel Quickstart</h1>
+
+        @yield('content')
+    </body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+繼承基礎模板的user模板
+
+user.blade.php (裡面只放 ajax內容)
+-------------------------------------------------------------------------------------------------------------------------------------------
+@extends('layout')
+
+@section('content')
+<script>
+$(document).ready(function(){
+	 $('#ajaxButton').click(function(){
+		 $.ajax({
+            headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+			 type:'post',
+			 url:'aaa',
+			 dataType:'json',
+			 success : function(data){
+                 var str = JSON.stringify(data[0]);
+				 alert(str);
+                },
+             error:function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status+"\n"+thrownError);
+                   
+                }
+		 });
+	 });
+	 
+});
+</script>
+ 
+        <button id="ajaxButton" value="123">
+            AJAX按鈕撈資料庫資料    
+        </button>
+-------------------------------------------------------------------------------------------------------------------------------------
+
+透過ajax的url到達的route
+轉至AjaxController控制器內的test方法
+
+Route::post('aaa','AjaxController@test');
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+AjaxController.php
+--------------------------------------------------------------------------------------------------------------------------------------
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\student;
+
+class AjaxController extends Controller
+{
+    //
+    function test(Request $request){
+        $input = $request-> all（）;
+       // return response()->json(['success'=>'Got Simple Ajax Request。']); //json
+
+       $students2 = student::all();
+       return $students2;
+        
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+
+對應資料表student.php
+----------------------------------------------------------------------------------------------------------------------------------------
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class student extends Model
+{
+    //
+    protected $table='student';
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+完成ajax
